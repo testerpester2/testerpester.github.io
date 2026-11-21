@@ -3,7 +3,7 @@ env.autoplayStatus
 function checkAutoplayStatus() {
     if (env.platform == "firefox") {
         env.autoplayStatus = navigator.getAutoplayPolicy("mediaelement")
-        
+
         if (env.autoplayStatus == "allowed") {killAutoplayWarning()}
     } else {
         body.insertAdjacentHTML("beforeend", `<audio style="display: none;" class="autoplaytester" src="/audio/meowmeow.ogg"></audio>`)
@@ -41,6 +41,9 @@ function killAutoplayWarning () {
     autoplayContainer.addEventListener("animationend", () => {
             autoplayContainer.remove()
     })
+
+    body.removeEventListener("click", checkAutoplayStatus)
+    body.removeEventListener("keypress", checkAutoplayStatus)
 }
 
 checkAutoplayStatus()

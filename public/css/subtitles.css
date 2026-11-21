@@ -1,0 +1,50 @@
+.subtitlescontainer {
+  --transition-time: 0.1s;
+  min-width: 60%;
+  max-width: 60%;
+  background: #000c;
+  display: flex;
+  position: absolute;
+  z-index: 2;
+  border-radius: 8px;
+  transition: opacity var(--transition-time) ease-out;
+  bottom: 17%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  flex-direction: column-reverse;
+  overflow: hidden;
+  overflow-anchor: auto;
+  opacity: 1;
+  padding: 0.7em;
+  text-align: left;
+}
+
+/* .subtitlescontainer.debug {
+    background-color: red;
+} */
+
+.subtitlescontainer:empty {
+    opacity: 0;
+}
+
+.subtitle {
+    color: white;
+    word-wrap: break-word;
+    margin-top: 0.1em;
+}
+
+.subtitle.fadein {
+    animation: FADE-IN 0.1s linear 1;
+}
+
+.subtitle.fadeout {
+    animation: FADE-OUT 0.1s linear 1;
+}
+
+.subtitle.red {
+    color: red;
+}
+
+.subtitle.faraway {
+    color: darkgray;
+}

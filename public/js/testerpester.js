@@ -1,5 +1,8 @@
 var env = {}
+var page = {}
 var body = document.body
+
+env.debugMode = false
 
 env.sounds = {}
 
@@ -14,3 +17,9 @@ if (isFirefox()) {
 } else {
     env.platform = "chrome"
 }
+
+body.insertAdjacentHTML("afterbegin", `
+    <div class="uicontainer"></div>    
+`)
+
+page.uicontainer = body.querySelector(".uicontainer")
