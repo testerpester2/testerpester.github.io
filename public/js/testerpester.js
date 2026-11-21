@@ -1,12 +1,16 @@
 var env = {}
+var body = document.body
 
 env.sounds = {}
 
-env.sounds.meow = new Howl({
-    src: ["/audio/meowmeow.ogg"],
-    loop: true,
-    autoplay: true,
-    volume: 0.5
-})
+// this one is from corru.js but changed to count firefox on linux as well
+// not sure why they had the windows check in the first place??
+function isFirefox() {
+    return navigator.userAgent.indexOf('Firefox') !== -1;
+}
 
-env.sounds.meow.play()
+if (isFirefox()) {
+    env.platform = "firefox"
+} else {
+    env.platform = "chrome"
+}

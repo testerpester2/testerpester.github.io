@@ -1,6 +1,51 @@
-var autoplayStatus = navigator.getAutoplayPolicy("mediaelement")
+env.autoplayStatus
 
-if (autoplayStatus != "allowed") {
+function checkAutoplayStatus() {
+    if (env.platform == "firefox") {
+        env.autoplayStatus = navigator.getAutoplayPolicy("mediaelement")
+        
+        if (env.autoplayStatus == "allowed") {killAutoplayWarning()}
+    } else {
+        body.insertAdjacentHTML("beforeend", `<audio style="display: none;" class="autoplaytester" src="/audio/meowmeow.ogg"></audio>`)
+        let tester = document.querySelector('.autoplaytester')
+        tester.volume = 0
+        
+        // this bit is just from the chrome 88 announcement post
+        let promise = tester.play()
+
+        if (promise !== undefined) {
+            promise.then(_ => {
+                env.autoplayStatus = "allowed"
+                console.log("autoplay allowed yay")
+                killAutoplayWarning()
+            }).catch(error => {
+                env.autoplayStatus = "not-allowed"
+                console.log("autoplay not allowed")
+            });
+        } else {
+            console.log("something fucked up happened")
+        }
+
+        // tester.remove()
+    }
+}
+
+function killAutoplayWarning () {
+    let autoplayContainer = document.body.querySelector(".autoplaycontainer")
+
+    if (env.autoplayStatus != "allowed") {
+        return
+    }
+
+    autoplayContainer.classList.add("fadeout")
+    autoplayContainer.addEventListener("animationend", () => {
+            autoplayContainer.remove()
+    })
+}
+
+checkAutoplayStatus()
+
+if (env.autoplayStatus != "allowed") {
     document.body.insertAdjacentHTML("beforeend", `
 
     <div class="autoplaycontainer">
@@ -16,18 +61,6 @@ if (autoplayStatus != "allowed") {
     
     document.head.insertAdjacentHTML("beforeend", `<link rel="stylesheet" href="/css/autoplay-check.css">`)
 
-    var autoplayContainer = document.body.querySelector(".autoplaycontainer")
-
-    autoplayContainer.addEventListener("click", () => {
-        autoplayStatus = navigator.getAutoplayPolicy("mediaelement")
-
-        if (autoplayStatus != "allowed") {
-            return
-        }
-
-        autoplayContainer.classList.add("fadeout")
-        autoplayContainer.addEventListener("animationend", () => {
-                autoplayContainer.remove()
-            })
-        })
+    body.addEventListener("click", checkAutoplayStatus)
+    body.addEventListener("keypress", checkAutoplayStatus)
 }
