@@ -1,0 +1,21 @@
+
+.autoplaycontainer {
+    background-color: #707070d6;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+div.autoplaybox {
+    border-color: #00ffff;
+    align-items: center;
+    background-color: #f0f8ffdd;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    border-style: outset;
+    border-width: 0.5em;
+    padding: 0.8em;
+}

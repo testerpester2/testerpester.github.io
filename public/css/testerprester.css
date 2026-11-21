@@ -1,0 +1,9 @@
+@font-face {
+    font-family: "SpaceMono";
+    font-style: normal;
+    src: url(/fonts/SpaceMono-Regular.woff2);
+}
+
+:root {
+    font-family: SpaceMono;
+}
