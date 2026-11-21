@@ -1,0 +1,1 @@
+var autoplayStatus = navigator.getAutoplayPolicy("mediaelement")
