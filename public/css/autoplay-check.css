@@ -1,11 +1,14 @@
 
 .autoplaycontainer {
-    background-color: #707070d6;
     min-width: 100%;
     min-height: 100%;
     justify-content: center;
     align-items: center;
     display: flex;
+    position: absolute;
+    background: #000000a8;
+    top: 0%;
+    left: 0%;
 }
 
 div.autoplaybox {
@@ -18,4 +21,26 @@ div.autoplaybox {
     border-style: outset;
     border-width: 0.5em;
     padding: 0.8em;
+}
+
+.autoplaycontainer.fadeout {
+    animation: FADE-OUT 0.45s linear 1;
+}
+
+.autoplaybutton {
+  background-color: cyan;
+  border-color: white;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 6px 6px;
+  padding: 6px;
+  margin-top: 0.6em;
+}
+
+.autoplaybutton:hover {
+  background-color: magenta;
+}
+
+.autoplaybutton:active {
+  background-color: white;
 }
