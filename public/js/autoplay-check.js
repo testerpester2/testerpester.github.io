@@ -7,6 +7,7 @@ if (autoplayStatus != "allowed") {
         <div class="autoplaybox">
             <h2 class="autoplaytext">Click the button for audio!!</h2>
             <span class="autoplaytext">Your autoplay settings prevent this page from playing audio by default,,,,</span>
+            <span class="autoplaytext">(okay actually theres no audio yet but thats just cause im too sleepy)</span>
             <button class="autoplaybutton">meow</button>
         </div>
     </div>
