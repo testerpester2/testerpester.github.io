@@ -1,8 +1,8 @@
 
 .autoplaycontainer {
     background-color: #707070d6;
-    width: 100%;
-    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
     justify-content: center;
     align-items: center;
     display: flex;
